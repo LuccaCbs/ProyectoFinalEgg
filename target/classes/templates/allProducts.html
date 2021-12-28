@@ -1,0 +1,161 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <header http-equiv="Content-Security-Policy" content=" frame-ancestors 'self' *.mercadolibre.com *.mercadopago.com">
+
+    </header>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Pet Store</title>
+    <span th:insert="fragments.html :: cssLinks"></span>
+
+</head>
+<body>
+    <span th:replace="fragments.html :: navBar"></span>
+    <section class="py-5 all-product-section">
+
+        <div class=" px-4 px-lg-5 mt-5">
+            <div class="row">
+                <div class="category_list col-lg-3 d-none d-sm-none d-md-none d-lg-block text-white">
+                    <div class="container">
+
+                        <h3 class="pt-3">Filters</h3>
+                        <hr>
+                        <div class="categories">
+                            <h4>Categories</h4>
+                            <ul class="list-group list-group-flush">
+
+                                <button id="all-btn" class="category_item btn category-button" category="all"
+                                    value="all">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        All
+
+                                        <span class="badge bg-dark text-white rounded-pill"
+                                            th:text="${foods + accessories}"></span>
+                                    </li>
+                                </button>
+
+                                <button id="category-button" class="category_item btn category-button"
+                                    category="productType" value="food">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Food
+
+                                        <span class="badge bg-dark text-white rounded-pill" th:text="${foods}"></span>
+                                    </li>
+                                </button>
+                                <button id="category-button" class="category_item btn category-button"
+                                    category="productType" value="accessory">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Accessories
+
+                                        <span class="badge bg-dark text-white rounded-pill" th:text="${accessories}"></span>
+                                    </li>
+                                </button>
+                            </ul>
+                        </div>
+
+                        <div class="mt-3">
+                            <h4>Brand</h4>
+                            <div th:each="brand : ${brands}">
+                                <input class="category_item form-check-input" category="brand"
+                                    th:attr="value=|${brand}|" name="brand" type="checkbox" th:value="${brand}"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <span th:text="${brand}"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h4>Pet Type</h4>
+                            <div th:each="petType : ${petTypes}">
+                                <input class="category_item form-check-input" category="petType"
+                                    th:attr="value=|${petType}|" type="checkbox" th:value="${petType}"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <span th:text="${petType}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h4>Pet Size</h4>
+                            <div th:each="petSize : ${petSizes}">
+                                <input class="category_item form-check-input" category="petSize"
+                                    th:attr="value=|${petSize}|" type="checkbox" th:value="${petSize}"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <span th:text="${petSize}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h4>Pet Age</h4>
+                            <div th:each="petAge : ${petAges}">
+                                <input class="category_item form-check-input" category="petAge"
+                                    th:attr="value=|${petAge}|" type="checkbox" th:value="${petAge}"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <span th:text="${petAge}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h4>Price Range</h4>
+                            <div class="price-container">
+                                <input class="category_item" id="price" category="price" type="range" min="1"
+                                    th:attr="max=|${maxPrice}|" step="1">
+                                <br>
+                                <span id="show-price" class="badge bg-dark text-white ms-1 rounded-pill"
+                                    th:text="${maxPrice / 2}">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+
+                <span th:replace="fragments :: products">Products</sp>
+
+            </div>
+        </div>
+    </section>
+    
+    <th:block th:replace="fragments :: modalProduct">modal</th:block>
+
+    <th:block th:replace="fragments :: shoppingCart">modal</th:block>
+
+    <!-- Footer-->
+    <footer>
+        <div class="bg-dark text-white">
+            <div class="container ">
+                <div class="py-3">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3 d-flex align-items-baseline">
+                        <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-muted">HOME</a></li>
+                        <li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-muted">ABOUT</a></li>
+                        <li class="nav-item"><a th:href="@{/staff}" class="nav-link px-2 text-muted">STAFF</a></li>
+                        <li class="nav-item"><a th:href="@{/contactPage}" class="nav-link px-2 text-muted">CONTACT US</a></li>
+                        <li class="px-4  text-muted">|</li>
+                        <li class="text-muted">FOLLOW US&nbsp;:</li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100076148118466"><i class="fa-brands fa-facebook px-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-instagram pe-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-twitter pe-3 text-muted"></i></a></li>
+                    </ul>
+                    <p class="text-center text-muted">&copy; 2021 T1SHOP, Inc</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+
+<script src="/js/jquery-3.6.0.js" th:inline="javascript"></script>
+<script src="/js/products.js" th:inline="javascript">
+</script>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+
+</html>

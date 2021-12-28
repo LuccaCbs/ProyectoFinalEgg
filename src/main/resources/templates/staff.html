@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' *; img-src 'self' *;  script-src 'self' 'unsafe-inline' * ; style-src 'unsafe-inline' * 'self' ;">
+    -->
+    <header http-equiv="Content-Security-Policy" content=" frame-ancestors 'self' *.mercadolibre.com *.mercadopago.com">
+
+    </header>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Pet Store</title>
+    <span th:insert="fragments.html :: cssLinks"></span>
+
+</head>
+
+<body>
+    <span th:replace="fragments.html :: navBar"></span>
+
+    <div class="staff-container">
+        <div class="nerd-dog">
+            <img src="/img/nerd-dog.jpg">
+        </div>
+        <div class="team-one-staff">
+            <h3 class="pt-3 ps-3">This awesome website was made width effort and a bunch of cool guys:</h3>
+            <ul>
+                <li class="d-flex align-items-center"><img src="/img/staff/lucca-vergara.jpg"><p>Lucca Vergara</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/nahuel-marchesini-moi.jpg"><p>Nahuel Marchesini Moi</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/gonzalo-balderrama.jpg"><p>Gonzalo Balderrama</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/fernando-vilche.jpg"><p>Fernando Vilche</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/alan-shalom.jpg"><p>Alan Shalom</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/joel-ferro.jpg"><p>Joel Ferro</p></li>
+                <hr>
+                <li class="d-flex align-items-center"><img src="/img/staff/german-yanzon.jpg"><p>Germán Yanzón</p></li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <th:block th:replace="fragments :: modalProduct">modal</th:block>
+
+    <th:block th:replace="fragments :: shoppingCart">modal</th:block>
+
+    <th:block th:replace="fragments :: paymentMethods">modal</th:block>
+
+    <th:block th:replace="fragments :: user-sing-up">modal</th:block>
+
+    <th:block th:replace="fragments :: user-login">modal</th:block>
+
+    <!-- Footer-->
+    <footer>
+        <span th:insert="fragments.html :: footer"></span>
+    </footer>
+    <!-- Core theme JS-->
+
+</body>
+
+<script src="/js/jquery-3.6.0.js" th:inline="javascript"></script>
+<script src="/js/index.js" th:inline="javascript">
+</script>
+<script src="/js/userForm.js"></script>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+
+</html>

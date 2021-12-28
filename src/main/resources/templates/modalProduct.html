@@ -1,0 +1,51 @@
+<div class="modal-content">
+    <!-- <div class="modal-header">
+        <h5 class="modal-title" id="modalProductLabel" ><span th:text="${brand}"></span>: <span th:text="${name}"></span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div> -->
+    <div class="modal-card row justify-content-center" style="width: auto;margin-left: 0px;margin-right: 0px;">
+        <div class="card">
+            <div class="productImage">
+                <span th:switch="${productType}">
+                    <span th:case="accessory">
+                        <img class="card-img-top" th:src="@{'/resources/products/accessory/'+${image}}">
+                    </span>
+
+                    <span th:case="food">
+                        <img class="card-img-top" th:src="@{'/resources/products/food/'+${image}}">
+                    </span>
+                </span>
+            </div>
+            <div class="card-body">
+                <h5 th:text="${name}+':'" class="fw-bolder"></h5>
+                <br>
+                <div class="row-sector">
+                    <div class="price">
+                        <span th:text="'$'+${price}" class="fw-bolder"></span>
+                    </div>
+                    <!-- <span th:replace="fragments :: productQuality">Product Quality</sp> -->
+                </div>
+                <p class="card-text">
+                    <strong><span th:text="${description}"></span></strong>
+                </p>
+            </div>
+            <!-- <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Product Type:</strong> <span th:text="${productType}"></span>
+                    </li>
+                    <li class="list-group-item"><strong>Pet Type:</strong> <span th:text="${petType}"></span></li>
+                    <li class="list-group-item"><strong>Pet Age:</strong> <span th:text="${petAge}"></span></li>
+                    <li class="list-group-item"><strong>Pet Size:</strong><span th:text="${petSize}"></span></li>
+                </ul>
+            </div> -->
+            <!-- <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div> -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+    </div>
+</div>

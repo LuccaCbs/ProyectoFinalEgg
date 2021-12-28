@@ -1,0 +1,47 @@
+<div class="modal-content shopcart-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalProductLabel"><strong>Your Shop-Cart</strong></span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-card shopcart-modal-card row justify-content-center"
+        style="width: auto;margin-left: 0px;margin-right: 0px;">
+        <!-- <div class="card" style="width: 18rem;"> -->
+
+        <button>Pay in the shop</button>
+        <div class="cho-container"></div>
+
+        <!-- </div> -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<script th:inline="javascript">
+    var mp = new MercadoPago('APP_USR-0b171528-4850-463f-99b8-0b358739411c', {
+        locale: 'es-AR'
+    })
+
+    var pi = /*[[${pi}]]*/ "p2";
+    var preferenceId = /*[[${Preference.id}]]*/ "pi";
+
+    console.log(pi);
+    console.log(preferenceId);
+
+    // Inicializa el checkout
+    mp.checkout({
+        preference: {
+            id: preferenceId
+        },
+        render: {
+            container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+            label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+            type: 'wallet',
+
+        }
+    });
+</script>

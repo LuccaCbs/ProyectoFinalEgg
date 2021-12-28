@@ -1,0 +1,82 @@
+<div class="modal-content shopcart-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalProductLabel">YOUR SHOPCART</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-card shopcart-modal-card row justify-content-center"
+        style="width: auto;margin-left: 0px;margin-right: 0px;">
+        <!-- <div class="card" style="width: 18rem;"> -->
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr th:each="product : ${products}">
+                <td>
+                    <div class="item-img">
+                        <span th:switch="${product.productType}">
+                            <span th:case="accessory">
+                                <img class="card-img-top" th:src="@{'/resources/products/accessory/'+${product.Image}}">
+                            </span>
+
+                            <span th:case="food">
+                                <img class="card-img-top" th:src="@{'/resources/products/food/'+${product.Image}}">
+                            </span>
+                        </span>
+                    </div>
+                </td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.brand}"></td>
+                <td th:text="'$'+${product.price}"></td>
+                <td th:text="${product.productQuantity}"></td>
+                <td>
+                    <button class="btn add-item_button rounded-pill" th:attr="productId=|${product.id}|">
+                        Add &nbsp;<i
+                        class="fa fa-plus"></i>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-dark delete-item_button rounded-pill" th:attr="productId=|${product.id}|">
+                        Remove<i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- </div> -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="cho-container"></div>
+    </div>
+</div>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<script th:inline="javascript">
+    var mp = new MercadoPago('APP_USR-0b171528-4850-463f-99b8-0b358739411c', {
+        locale: 'es-AR'
+    })
+
+    var preferenceId = /*[[${Preference.id}]]*/ "pi";
+
+    // Inicializa el checkout
+    mp.checkout({
+        preference: {
+            id: preferenceId
+        },
+        render: {
+            container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+            label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+            type: 'wallet',
+
+        }
+    });
+</script>

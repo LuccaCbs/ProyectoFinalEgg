@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Pago</title>
+</head>
+
+<body>
+    
+    <div class="cho-container"></div>
+    <!---// SDK MercadoPago.js V2--->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script th:inline="javascript">
+        const mp = new MercadoPago('APP_USR-0b171528-4850-463f-99b8-0b358739411c', {
+            locale: 'es-AR'
+        })
+
+        const preferenceId = /*[[${Preference.id}]]*/ "pi";
+
+        // Inicializa el checkout
+        mp.checkout({
+            preference: {
+                id: preferenceId                
+            },
+            render: {
+                container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+                label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+                type: 'wallet',
+                
+            },
+            theme: {
+                elementsColor: '#81ecec',
+                headerColor: '#81ecec',
+            }
+        });
+    </script>
+</body>
+
+</html>

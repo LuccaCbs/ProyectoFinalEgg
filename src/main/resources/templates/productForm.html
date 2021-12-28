@@ -1,0 +1,190 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <span th:insert="fragments.html :: cssLinks"></span>
+    <link href="css/prdForm.css" rel="stylesheet" />
+
+    <title>Product Form</title>
+</head>
+
+<body>
+    <span th:replace="fragments.html :: navBar"></span>
+
+    <div class="form-container">
+        <form class="shadow-lg" id="productForm" th:action="@{/createProduct}" method="POST" enctype="multipart/form-data">
+            <br>
+            <h2>Create a Product</h2>
+            <br>
+            <div class="form-group">
+                <div class="flex-width">
+                    <p class="fw-bolder fs-5" for="name">Name</p>
+                    <input type="text" class="form-control shadow" name="name" placeholder="Name" th:value="${name}"
+                        id="name">
+                </div>
+                <div class="flex-width">
+                    <p class="fw-bolder fs-5" for="brand">Brand</p>
+                    <input type="text" class="form-control shadow" name="brand" placeholder="Brand" th:value="${brand}"
+                        id="brand">
+                </div>
+            </div>
+
+            <div class="form-group" id="productTypeDiv">
+                <p th:if="${error != null}" th:text="${error}" style="color:rgb(231, 15, 15)" class="fw-bolder fs-5">
+                </p>
+                <p th:unless="${error != null}"></p>
+
+                <div class="flex-width">
+                    <p class="fw-bolder fs-5">Select Product Type</p>
+                    <select class="form-control shadow" id="productType" name="productType">
+                        <option value="food" selected>FOOD</option>
+                        <option value="accessory">ACCESSORY</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" id="formFood" style="display: none;">
+                <div class="flex-width">
+                    <p class="fw-bolder fs-5" for="foodType">Food Type</p>
+                    <input type="text" class="form-control shadow" name="foodType" placeholder="Food Type"
+                        th:value="${foodType}" id="foodType">
+                </div>
+                <p class="fw-bolder fs-5" for="stock">Product Weight</p>
+                <div class="input-group">
+                    <div class="input-group-text">KG</div>
+                    <input type="text" class="form-control shadow" name="productWeight" id="productWeight"
+                        th:value="${productWeight}">
+                </div>
+
+            </div>
+
+            <div class="form-group" id="formAccessory" style="display: none;">
+
+                <div class="flex-width">
+                    <p class="fw-bolder fs-5" for="accessoryType">Accessory Type</p>
+                    <input type="text" id="accessoryType" class="form-control shadow" placeholder="Accessory Type"
+                        name="accessoryType" th:value="${accessoryType}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="flex-width" id="restForm">
+                    <div class="flex-width">
+                        <p class="fw-bolder fs-5" for="price">Price</p>
+                        <div class="input-group">
+                            <div class="input-group-text shadow">$</div>
+                            <input type="text" class="form-control col-auto shadow" name="price" id="price"
+                                th:value="${price}">
+                        </div>
+                    </div>
+                    <div class="flex-width">
+                        <p class="fw-bolder fs-5 shadow" for="stock">Stock</p>
+                        <input type="text" class="form-control shadow" name="stock" placeholder="Stock" id="stock"
+                            th:value="${stock}">
+                    </div>
+
+                    <p class="fw-bolder fs-5" for="productQuality">Product Quality</p>
+
+                    <span id="rangeValue">0</span>
+                    <Input class="range" type="range" th:value="${productQuality}" name="productQuality"
+                        id="productQuality" value="1" min="1" max="5" onChange="rangeSlide(this.value)"
+                        onmousemove="rangeSlide(this.value)"></Input>
+                    <script type="text/javascript">
+                        function rangeSlide(value) {
+                            document.getElementById('rangeValue').innerHTML = value;
+                        }
+                    </script>
+                </div>
+
+                <p class="fw-bolder fs-5" for="image">Image</p>
+                <div class="flex-width">
+                    <input type="file" class="form-control shadow" name="image">
+                </div>
+                <div id="petTypeDiv">
+                    <p class="fw-bolder fs-5">Pet Type</p>
+                    <select name="petType" class="form-control shadow">
+                        <option th:value="Dog" selected>DOG</option>
+                        <option th:value="Cat">CAT</option>
+                        <option th:value="Rodent">RODENT</option>
+                        <option th:value="Reptile">REPTILE</option>
+                        <option th:value="Fish">FISH</option>
+                        <option th:value="Bird">BIRD</option>
+                    </select>
+                </div>
+                <div id="petSizeDiv">
+                    <p class="fw-bolder fs-5">Pet Size</p>
+                    <select name="petSize" class="form-control shadow">
+                        <option th:value="small" selected>Small</option>
+                        <option th:value="medium">Medium</option>
+                        <option th:value="big">Big</option>
+                    </select>
+                </div>
+                <div id="petAgeDiv">
+                    <p class="fw-bolder fs-5">Pet Age</p>
+                    <select name="petAge" class="form-control shadow">
+                        <option th:value="puppy" selected>Puppy</option>
+                        <option th:value="young">Young</option>
+                        <option th:value="adult">Adult</option>
+                    </select>
+                </div>
+            </div>
+            <p class="fw-bolder fs-5">Description:</p>
+            <div class="flex-width">
+                <textarea form="productForm" name="description" id="description" cols="50" rows="10"
+                    placeholder="Product information" class="shadow"></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg shadow" id="save">Cargar</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="bg-dark text-white">
+            <div class="container ">
+                <div class="py-3">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3 d-flex align-items-baseline">
+                        <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-muted">HOME</a></li>
+                        <li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-muted">ABOUT</a></li>
+                        <li class="nav-item"><a th:href="@{/staff}" class="nav-link px-2 text-muted">STAFF</a></li>
+                        <li class="nav-item"><a th:href="@{/contactPage}" class="nav-link px-2 text-muted">CONTACT US</a></li>
+                        <li class="px-4  text-muted">|</li>
+                        <li class="text-muted">FOLLOW US&nbsp;:</li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100076148118466"><i class="fa-brands fa-facebook px-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-instagram pe-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-twitter pe-3 text-muted"></i></a></li>
+                    </ul>
+                    <p class="text-center text-muted">&copy; 2021 T1SHOP, Inc</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/jquery-3.6.0.js" nonce="wtfdude" th:inline="javascript"></script>
+    <script>
+        $("#productType").change(function () {
+            if ($(this).val() == "food") {
+                $('#formFood').show();
+                $('#foodType').attr('required', '');
+                $('#foodType').attr('data-error', 'This field is required.');
+                $('#productWeight').attr('required', '');
+                $('#productWeight').attr('data-error', 'This field is required.');
+                $('#formAccessory').hide();
+                $('#accessoryType').removeAttr('required');
+                $('#accessoryType').removeAttr('data-error');
+            } else {
+                $('#formFood').hide();
+                $('#foodType').removeAttr('required', '');
+                $('#foodType').removeAttr('data-error', 'This field is required.');
+                $('#productWeight').removeAttr('required', '');
+                $('#productWeight').removeAttr('data-error', 'This field is required.');
+                $('#formAccessory').show();
+                $('#accessoryType').attr('required', '');
+                $('#accessoryType').attr('data-error', 'This field is required.');
+            }
+        });
+        $("#productType").trigger("change");
+    </script>
+</body>
+
+</html>

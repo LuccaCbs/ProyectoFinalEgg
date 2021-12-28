@@ -1,0 +1,225 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <header http-equiv="Content-Security-Policy" content=" frame-ancestors 'self' *.mercadolibre.com *.mercadopago.com">
+    </header>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Pet Store</title>
+    <link rel="shortcut icon" type="image/x icon" href="img/T1-logo-1.png">
+    <span th:insert="fragments.html :: cssLinks"></span>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="head-content">
+        <span th:replace="fragments.html :: navBar"></span>
+        <h1>The best team from Programación V presents <span>T1SHOP</span></h1>
+    </div>
+    
+    <div class="gradient-background-2">
+        <span th:insert="fragments.html :: filter_btns"></span>
+
+        <span th:insert="fragments.html :: meme_filter_btns"></span>
+    </div>
+
+    <div class="section-container gradient-background">
+        <div id="adv-img-1" class="advertising-image">
+            <div class="poster-img">
+                <img src="/img/dog-icon.png" alt="">
+            </div>
+        </div>
+        <div id="section-dog" class="advertising-section">
+            <span th:insert="fragments.html :: dog-section"></span>
+        </div>
+    </div>
+
+    <div class="section-container gradient-background-2">
+        <div id="section-cat" class="advertising-section">
+            <span th:insert="fragments.html :: cat-section"></span>
+        </div>
+        <div id="adv-img-2" class="advertising-image">
+            <div class="poster-img">
+                <img src="/img/cat-icon.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-slider">
+        <div class="slider" id="slider">
+            <div class="slider__section">
+                <a href="#"><img src="/img/slider1.jpg" alt="" class="slider__img"></a>
+            </div>
+            <div class="slider__section">
+                <a href="#"><img src="/img/slider2.jpg" alt="" class="slider__img"></a>
+            </div>
+            <div class="slider__section">
+                <a href="#"><img src="/img/slider3.png" alt="" class="slider__img"></a>
+            </div>
+
+        </div>
+
+        <div class="slider__btn slider__btn--right" id="btn-right"><i class="fa fa-chevron-right"
+                aria-hidden="true"></i></div>
+        <div class="slider__btn slider__btn--left" id="btn-left"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    <div class="section-container gradient-background">
+        <div id="adv-img-1" class="advertising-image">
+            <div class="poster-img">
+                <img src="/img/rodent-icon.png" alt="">
+            </div>
+        </div>
+        <div id="section-rodent" class="advertising-section">
+            <span th:insert="fragments.html :: rodent-section"></span>
+        </div>
+    </div>
+
+    <div class="section-container gradient-background-2">
+        <div id="section-fish" class="advertising-section">
+            <span th:insert="fragments.html :: fish-section"></span>
+        </div>
+        <div id="adv-img-2" class="advertising-image">
+            <div class="poster-img">
+                <img src="/img/fish-icon.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="publicity-container pc-1 gradient-background">
+        <div class="publicity-section pc-1">
+            <div class="left-publicity pc-1">
+                    <img src="/img/publicity-1.png" alt="" class="publicity-img pc-1">
+                    <img src="/img/publicity-1.png" alt="" class="publicity-img pc-1">
+            </div>
+            <div class="center-publicity pc-1">
+                    <img src="/img/publicity-center.jpg" alt="" class="publicity-img pc-1">
+            </div>
+            <div class="right-publicity pc-1">
+                    <img src="/img/publicity-2.png" alt="" class="publicity-img pc-1">
+                    <img src="/img/publicity-3.jpg" alt="" class="publicity-img pc-1">
+            </div>
+        </div>
+    </div>
+
+    <div class="publicity-container pc-2">
+        <div id="publicity-section" class="publicity-section pc-2">
+            <div class="left-publicity publicity-sector pc-2">
+                    <img src="/img/publicity-1.png" alt="" class="publicity-img pc-2">
+                    <img src="/img/publicity-1.png" alt="" class="publicity-img pc-2">
+            </div>
+            <div class="center-publicity publicity-sector pc-2">
+                    <img src="/img/publicity-center.jpg" alt="" class="publicity-img pc-2">
+            </div>
+            <div class="right-publicity publicity-sector pc-2">
+                    <img src="/img/publicity-2.png" alt="" class="publicity-img pc-2">
+                    <img src="/img/publicity-3.jpg" alt="" class="publicity-img pc-2">
+            </div>
+        </div>
+        
+        <button role="button" id="left_pub_btn" aria-label="Back" class="left_pub_btn pc-2">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button role="button" id="right_pub_btn" aria-label="Next" class="right_pub_btn pc-2">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <th:block th:replace="fragments :: modalProduct">modal</th:block>
+
+    <th:block th:replace="fragments :: shoppingCart">modal</th:block>
+
+    <th:block th:replace="fragments :: paymentMethods">modal</th:block>
+
+    <div class="modal-container-admin">
+        <div class="modalA modal-close-admin">
+            <p class="close-admin">X</p>
+            <img class="admin-features" sec:authorize="hasRole('ROLE_ADMIN')" src="/img/admin-icon.png" alt="">
+            <img sec:authorize="!isAuthenticated()" src="/img/welcomeCats.svg" alt="">
+            <div id="admin-sign-up" class="model-textos">
+                <h2>Formulario de Registro</h2>
+                <form id="contact-admin" action="/saveAdmin" method="POST">
+                    <div class="form-group-admin">
+                        
+                        <p id="error2" style="color:rgb(231, 15, 15)"></p>
+    
+                        <label for="exampleInputTitulo"></label>
+                        <input type="text" class="form-control" name="name" id="name1" placeholder="Name">
+                        
+                        <label for="exampleInputTitulo"></label>
+                        <input type="number" class="form-control" name="dni" id="dni1" placeholder="DNI">
+                        
+                        <label for="exampleInputTitulo"></label>
+                        <input type="email" class="form-control" name="mail" id="mail1" placeholder="Mail">
+                        
+                        <label for="exampleInputTitulo"></label>
+                        <input type="tel" class="form-control" name="phone" id="phone1" placeholder="Phone">
+                        
+                        <label for="exampleInputTitulo"></label>
+                        <input type="password" class="form-control" name="password1" id="password2" placeholder="Password">
+                        
+                        <label for="exampleInputTitulo"></label>
+                        <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+                        <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+                        <input type="text" name="role" id="role" value="ROLE_CLIENT"
+                            style="visibility: hidden; display: none;">
+                        <input type="text" name="active" id="active" value="true"
+                            style="visibility: hidden; display: none;">
+                    </div>
+                    </div>
+                    <br><br>
+                    <button name="submit" type="submit" id="contact-submit-2" class="btn btn-outline-dark"
+                    data-submit="...Sending">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments :: user-sing-up">modal</th:block>
+
+    <th:block th:replace="fragments :: user-login">modal</th:block>
+
+    <!-- Footer-->
+    <footer>
+        <div class="bg-dark text-white">
+            <div class="container ">
+                <div class="py-3">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3 d-flex align-items-baseline">
+                        <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-muted">HOME</a></li>
+                        <li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-muted">ABOUT</a></li>
+                        <li class="nav-item"><a th:href="@{/staff}" class="nav-link px-2 text-muted">STAFF</a></li>
+                        <li class="nav-item"><a th:href="@{/contactPage}" class="nav-link px-2 text-muted">CONTACT US</a></li>
+                        <li class="px-4  text-muted">|</li>
+                        <li class="text-muted">FOLLOW US&nbsp;:</li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100076148118466"><i class="fa-brands fa-facebook px-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-instagram pe-3 text-muted"></i></a></li>
+                        <li><a href="/"><i class="fa-brands fa-twitter pe-3 text-muted"></i></a></li>
+                    </ul>
+                    <p class="text-center text-muted">&copy; 2021 T1SHOP, Inc</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Core theme JS-->
+
+</body>
+
+<script src="/js/jquery-3.6.0.js" th:inline="javascript"></script>
+<script src="/js/index.js" th:inline="javascript">
+</script>
+<script src="/js/admin-form-sign-up.js" sec:authorize="hasRole('ROLE_ADMIN')"></script>
+<script src="/js/user-form-sing-up.js" sec:authorize="!hasRole('ROLE_CLIENT')"></script>
+<script src="/js/user-form-login.js" sec:authorize="!isAuthenticated()"></script>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+
+</html>

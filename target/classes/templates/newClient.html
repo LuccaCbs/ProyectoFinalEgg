@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <span th:insert="fragments.html :: cssLinks"></span>
+    <link rel="stylesheet" href="/css/userForm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <span th:replace="fragments.html :: navBar"></span>
+
+    <button class=" btn btn-outline-dark cta">
+        Open
+    </button>
+
+    <div class="modal-container">
+        <div class="modal modal-close">
+            <p class="close">X</p>
+                <img src="welcomeCats.svg" alt="">
+                <div class="model-textos">
+                    <h2>Formulario de Registro</h2>
+                    <form id="contact" th:action="@{/saveClient}" method="POST">
+                        <div class="form-group">
+                            <br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="text" class="form-control" name="name" placeholder="Name">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="number" class="form-control" name="dni" placeholder="DNI">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="email" class="form-control" name="mail" placeholder="Mail">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="text" class="form-control" name="address" placeholder="Address">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="password" class="form-control" name="password1" placeholder="Password">
+                            <br><br>
+                            <label for="exampleInputTitulo"></label>
+                            <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+                            <br>
+                        </div>
+                        <br><br>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">SAVE</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</body>
+
+<script src="/js/userForm.js"></script>
+
+</html>

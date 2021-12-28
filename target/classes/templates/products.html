@@ -1,0 +1,63 @@
+<div th:each="product : ${products}" class="product-item  col mb-5">
+    <div class="card-container">
+        <div class="card product-container h-100">
+
+            <!-- <div class="card-body"> -->
+
+            <div class="image-container">
+                <button id="idButton" type="submit" name="productId" th:attr="productId=|${product.id}|"
+                    class="img-btn show-product-button" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                    <span th:switch="${product.productType}">
+                        <span th:case="accessory">
+                            <img class="card-img-top" th:src="@{'/resources/products/accessory/'+${product.Image}}">
+                        </span>
+
+                        <span th:case="food">
+                            <img class="card-img-top" th:src="@{'/resources/products/food/'+${product.Image}}">
+                        </span>
+                    </span>
+                </button>
+
+            </div>
+            <hr>
+            <!-- <div class=" p-4"> -->
+            <div class="row resume-container container">
+                <br>
+
+                <div class="row-sector container">
+                    <p th:text="${product.name}" class="fw-bolder"></p>
+                    <span th:replace="fragments :: productQuality">Product Quality</sp>
+                </div>
+
+                <div class="row-sector">
+                    <div class="price">
+                        <span th:text="'$'+${product.price}" class="fw-bolder"></span>
+                    </div>
+                    <button type="submit" name="productId" th:attr="productId=|${product.id}|"
+                        class="btn button add-to-cart_button text-center"><i class="fa fa-cart-plus"></i> Add
+                    </button>
+                </div>
+
+                <!-- <h5 th:text="${product.brand}" ></h5> -->
+
+            </div>
+
+            <!-- <div class="pt-0 border-top-0 bg-transparent button-container container">
+                    <div class="text-center">
+                        <button type="submit" name="productId" th:attr="productId=|${product.id}|"
+                            class="btn button add-to-cart_button">ADD TO
+                            CART
+                        </button>
+    
+                        <button id="idButton" type="submit" name="productId" th:attr="productId=|${product.id}|"
+                            class="btn button show-product-button" data-bs-toggle="modal"
+                            data-bs-target="#modalProduct">SHOW PRODUCT
+                        </button>
+                    </div>
+                    </div>
+    
+                </div> -->
+        </div>
+    </div>
+
+</div>
